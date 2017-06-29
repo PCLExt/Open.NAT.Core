@@ -1,0 +1,27 @@
+<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <OutputType>Exe</OutputType>
+    <TargetFramework>netcoreapp2.0</TargetFramework>
+    <Configurations>Debug Core;Release Core</Configurations>
+  </PropertyGroup>
+
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release Core|AnyCPU'">
+    <OutputPath>bin\Release\</OutputPath>
+  </PropertyGroup>
+
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug Core|AnyCPU'">
+    <OutputPath>bin\Debug\</OutputPath>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <Compile Include="..\Open.Nat.ConsoleTest\ColorConsoleTraceListener.cs" Link="ColorConsoleTraceListener.cs" />
+    <Compile Include="..\Open.Nat.ConsoleTest\HttpTrafficOnlyFilter.cs" Link="HttpTrafficOnlyFilter.cs" />
+    <Compile Include="..\Open.Nat.ConsoleTest\Main.cs" Link="Main.cs" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\Open.NAT.Core\Open.Nat.Core.csproj" />
+  </ItemGroup>
+
+</Project>

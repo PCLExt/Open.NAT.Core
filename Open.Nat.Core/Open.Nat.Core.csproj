@@ -1,0 +1,73 @@
+<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <TargetFramework>netstandard2.0</TargetFramework>
+    <AssemblyName>Open.Nat</AssemblyName>
+    <RootNamespace>Open.Nat</RootNamespace>
+    <Configurations>Debug Core;Release Core</Configurations>
+    <GenerateAssemblyInfo>false</GenerateAssemblyInfo>
+  </PropertyGroup>
+
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release Core|AnyCPU'">
+    <OutputPath>bin\Release\</OutputPath>
+    <DocumentationFile>bin\Release\netstandard2.0\Open.Nat.xml</DocumentationFile>
+  </PropertyGroup>
+
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug Core|AnyCPU'">
+    <OutputPath>bin\Debug\</OutputPath>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <Compile Include="..\Open.Nat\AssemblyInfo.cs" Link="Properties\AssemblyInfo.cs" />
+    <Compile Include="..\Open.Nat\Discovery\ISearcher.cs" Link="Discover\ISearcher.cs" />
+    <Compile Include="..\Open.Nat\Discovery\Searcher.cs" Link="Discover\Searcher.cs" />
+    <Compile Include="..\Open.Nat\Enums\ProtocolType.cs" Link="Enums\ProtocolType.cs" />
+    <Compile Include="..\Open.Nat\EventArgs\DeviceEventArgs.cs" Link="EventArgs\DeviceEventArgs.cs" />
+    <Compile Include="..\Open.Nat\Exceptions\MappingException.cs" Link="Exceptions\MappingException.cs" />
+    <Compile Include="..\Open.Nat\Exceptions\NatDeviceNotFoundException.cs" Link="Exceptions\NatDeviceNotFoundException.cs" />
+    <Compile Include="..\Open.Nat\Finalizer.cs" Link="Finalizer.cs" />
+    <Compile Include="..\Open.Nat\Mapping.cs" Link="Mapping.cs" />
+    <Compile Include="..\Open.Nat\NatDevice.cs" Link="NatDevice.cs" />
+    <Compile Include="..\Open.Nat\NatDiscoverer.cs" Link="NatDiscoverer.cs" />
+    <Compile Include="..\Open.Nat\Pmp\PmpConstants.cs" Link="Pmp\PmpConstants.cs" />
+    <Compile Include="..\Open.Nat\Pmp\PmpNatDevice.cs" Link="Pmp\PmpNatDevice.cs" />
+    <Compile Include="..\Open.Nat\Pmp\PmpSearcher.cs" Link="Pmp\PmpSearcher.cs" />
+    <Compile Include="..\Open.Nat\PortMapper.cs" Link="PortMapper.cs" />
+    <Compile Include="..\Open.Nat\Upnp\DiscoveryResponseMessage.cs" Link="Upnp\DiscoveryResponseMessage.cs" />
+    <Compile Include="..\Open.Nat\Upnp\Messages\DiscoverDeviceMessage.cs" Link="Upnp\Messages\DiscoverDeviceMessage.cs" />
+    <Compile Include="..\Open.Nat\Upnp\Messages\Requests\CreatePortMappingMessage.cs" Link="Upnp\Messages\Requests\CreatePortMappingMessage.cs" />
+    <Compile Include="..\Open.Nat\Upnp\Messages\Requests\DeletePortMappingMessage.cs" Link="Upnp\Messages\Requests\DeletePortMappingMessage.cs" />
+    <Compile Include="..\Open.Nat\Upnp\Messages\Requests\GetExternalIPAddressMessage.cs" Link="Upnp\Messages\Requests\GetExternalIPAddressMessage.cs" />
+    <Compile Include="..\Open.Nat\Upnp\Messages\Requests\GetGenericPortMappingEntry.cs" Link="Upnp\Messages\Requests\GetGenericPortMappingEntry.cs" />
+    <Compile Include="..\Open.Nat\Upnp\Messages\Requests\GetSpecificPortMappingEntryMessage.cs" Link="Upnp\Messages\Requests\GetSpecificPortMappingEntryMessage.cs" />
+    <Compile Include="..\Open.Nat\Upnp\Messages\Responses\AddPortMappingResponseMessage.cs" Link="Upnp\Messages\Responses\AddPortMappingResponseMessage.cs" />
+    <Compile Include="..\Open.Nat\Upnp\Messages\Responses\DeletePortMappingResponseMessage.cs" Link="Upnp\Messages\Responses\DeletePortMappingResponseMessage.cs" />
+    <Compile Include="..\Open.Nat\Upnp\Messages\Responses\GetExternalIPAddressResponseMessage.cs" Link="Upnp\Messages\Responses\GetExternalIPAddressResponseMessage.cs" />
+    <Compile Include="..\Open.Nat\Upnp\Messages\Responses\GetGenericPortMappingEntryResponseMessage.cs" Link="Upnp\Messages\Responses\GetGenericPortMappingEntryResponseMessage.cs" />
+    <Compile Include="..\Open.Nat\Upnp\RequestMessageBase.cs" Link="Upnp\RequestMessageBase.cs" />
+    <Compile Include="..\Open.Nat\Upnp\ResponseMessageBase.cs" Link="Upnp\ResponseMessageBase.cs" />
+    <Compile Include="..\Open.Nat\Upnp\SoapClient.cs" Link="Upnp\SoapClient.cs" />
+    <Compile Include="..\Open.Nat\Upnp\UpnpConstants.cs" Link="Upnp\UpnpConstants.cs" />
+    <Compile Include="..\Open.Nat\Upnp\UpnpNatDevice.cs" Link="Upnp\UpnpNatDevice.cs" />
+    <Compile Include="..\Open.Nat\Upnp\UpnpNatDeviceInfo.cs" Link="Upnp\UpnpNatDeviceInfo.cs" />
+    <Compile Include="..\Open.Nat\Upnp\UpnpSearcher.cs" Link="Upnp\UpnpSearcher.cs" />
+    <Compile Include="..\Open.Nat\Utils\Extensions.cs" Link="Utils\Extensions.cs" />
+    <Compile Include="..\Open.Nat\Utils\Guard.cs" Link="Utils\Guard.cs" />
+    <Compile Include="..\Open.Nat\Utils\IIPAddressesProvider.cs" Link="Utils\IIPAddressesProvider.cs" />
+    <Compile Include="..\Open.Nat\Utils\IPAddressesProvider.cs" Link="Utils\IPAddressesProvider.cs" />
+    <Compile Include="..\Open.Nat\Utils\WellKnownConstants.cs" Link="Utils\WellKnownConstants.cs" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <Folder Include="Discover\" />
+    <Folder Include="Enums\" />
+    <Folder Include="EventArgs\" />
+    <Folder Include="Upnp\Messages\Requests\" />
+    <Folder Include="Upnp\Messages\Responses\" />
+    <Folder Include="Utils\" />
+    <Folder Include="Exceptions\" />
+    <Folder Include="Pmp\" />
+    <Folder Include="Properties\" />
+  </ItemGroup>
+
+</Project>

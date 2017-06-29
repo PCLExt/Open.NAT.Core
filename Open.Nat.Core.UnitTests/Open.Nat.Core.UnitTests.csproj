@@ -1,0 +1,39 @@
+<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <TargetFramework>netcoreapp2.0</TargetFramework>
+
+    <IsPackable>false</IsPackable>
+
+    <RootNamespace></RootNamespace>
+
+    <AssemblyName>Open.Nat.UnitTests</AssemblyName>
+
+    <Configurations>Debug Core;Release Core</Configurations>
+  </PropertyGroup>
+
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release Core|AnyCPU'">
+    <OutputPath>bin\Release\</OutputPath>
+  </PropertyGroup>
+
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug Core|AnyCPU'">
+    <OutputPath>bin\Debug\</OutputPath>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <Compile Include="..\Open.Nat.UnitTests\InternetProtocolV6Tests.cs" Link="InternetProtocolV6Tests.cs" />
+    <Compile Include="..\Open.Nat.UnitTests\UpnpMockServer.cs" Link="UpnpMockServer.cs" />
+    <Compile Include="..\Open.Nat.UnitTests\UpnpNatDeviceInfoTests.cs" Link="UpnpNatDeviceInfoTests.cs" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <PackageReference Include="Microsoft.NET.Test.Sdk" Version="15.3.0-preview-20170517-02" />
+    <PackageReference Include="MSTest.TestAdapter" Version="1.1.17" />
+    <PackageReference Include="MSTest.TestFramework" Version="1.1.17" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\Open.NAT.Core\Open.Nat.Core.csproj" />
+  </ItemGroup>
+
+</Project>
