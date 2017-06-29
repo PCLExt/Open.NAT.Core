@@ -54,13 +54,13 @@ namespace Open.Nat
 			LeaseDuration = Convert.ToInt32(data.GetXmlElementText("NewLeaseDuration"));
 		}
 
-		public string RemoteHost { get; private set; }
-		public int ExternalPort { get; private set; }
-		public Protocol Protocol { get; private set; }
-		public int InternalPort { get; private set; }
-		public string InternalClient { get; private set; }
-		public bool Enabled { get; private set; }
-		public string PortMappingDescription { get; private set; }
-		public int LeaseDuration { get; private set; }
+		public string RemoteHost { get; }
+		public int ExternalPort { get; }
+		public Protocol Protocol { get; }
+		public int InternalPort { get; }
+		public string InternalClient { get; }
+		public bool Enabled { get; }
+		public string PortMappingDescription { get; }
+		public int LeaseDuration { get; }
 	}
 }

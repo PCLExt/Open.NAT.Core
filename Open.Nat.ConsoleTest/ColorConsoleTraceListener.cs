@@ -70,16 +70,10 @@ namespace Open.Nat.ConsoleTest
 			}
 		}
  
-		public override void Write(string message)
-		{
-			WriteColor(message, ConsoleColor.Gray);
-		}
-		public override void WriteLine(string message)
-		{
-			WriteColor(message + Environment.NewLine, ConsoleColor.Gray);
-		}
- 
-		private static void WriteColor(string message, ConsoleColor color)
+		public override void Write(string message) => WriteColor(message, ConsoleColor.Gray);
+        public override void WriteLine(string message) => WriteColor(message + Environment.NewLine, ConsoleColor.Gray);
+
+        private static void WriteColor(string message, ConsoleColor color)
 		{
 			Console.ForegroundColor = color;
 			Console.Write(message);

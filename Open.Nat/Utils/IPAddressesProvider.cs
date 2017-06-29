@@ -37,22 +37,13 @@ namespace Open.Nat
 	{
 		#region IIPAddressesProvider Members
 
-		public IEnumerable<IPAddress> UnicastAddresses()
-		{
-			return IPAddresses(p => p.UnicastAddresses.Select(x => x.Address));
-		}
+		public IEnumerable<IPAddress> UnicastAddresses() => IPAddresses(p => p.UnicastAddresses.Select(x => x.Address));
 
-		public IEnumerable<IPAddress> DnsAddresses()
-		{
-			return IPAddresses(p => p.DnsAddresses);
-		}
+	    public IEnumerable<IPAddress> DnsAddresses() => IPAddresses(p => p.DnsAddresses);
 
-		public IEnumerable<IPAddress> GatewayAddresses()
-		{
-			return IPAddresses(p => p.GatewayAddresses.Select(x => x.Address));
-		}
+	    public IEnumerable<IPAddress> GatewayAddresses() => IPAddresses(p => p.GatewayAddresses.Select(x => x.Address));
 
-		#endregion
+	    #endregion
 
 		private static IEnumerable<IPAddress> IPAddresses(Func<IPInterfaceProperties, IEnumerable<IPAddress>> ipExtractor)
 		{

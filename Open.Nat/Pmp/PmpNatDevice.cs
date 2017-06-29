@@ -45,7 +45,7 @@ namespace Open.Nat
 			_publicAddress = publicAddress;
 		}
 
-		internal IPAddress LocalAddress { get; private set; }
+		internal IPAddress LocalAddress { get; }
 
 #if NET35
 		public override Task CreatePortMapAsync(Mapping mapping)
@@ -266,10 +266,7 @@ namespace Open.Nat
 		}
 
 
-		public override string ToString()
-		{
-			return String.Format("Local Address: {0}\nPublic IP: {1}\nLast Seen: {2}",
-								 LocalAddress, _publicAddress, LastSeen);
-		}
+		public override string ToString() => String.Format("Local Address: {0}\nPublic IP: {1}\nLast Seen: {2}",
+            LocalAddress, _publicAddress, LastSeen);
 	}
 }

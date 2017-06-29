@@ -25,12 +25,11 @@
 //
 using System;
 using System.Collections.Generic;
-using System.Globalization;
 using System.Linq;
 
 namespace Open.Nat
 {
-	class DiscoveryResponseMessage
+    internal class DiscoveryResponseMessage
 	{
 		private readonly IDictionary<string, string> _headers;
 
@@ -47,9 +46,6 @@ namespace Open.Nat
 			_headers = headers.ToDictionary(x => x.Key.ToUpperInvariant(), x => x.Value);
 		}
 
-		public string this[string key]
-		{
-			get { return _headers[key.ToUpperInvariant()]; }
-		}
+		public string this[string key] => _headers[key.ToUpperInvariant()];
 	}
 }

@@ -26,7 +26,7 @@ namespace Open.Nat
 		/// <remarks>
 		/// Open.NAT only supports SourceLevels.Verbose, SourceLevels.Error, SourceLevels.Warning and SourceLevels.Information.
 		/// </remarks>
-		public readonly static TraceSource TraceSource = new TraceSource("Open.NAT");
+		public static readonly TraceSource TraceSource = new TraceSource("Open.NAT");
 
 		private static readonly Dictionary<string, NatDevice> Devices = new Dictionary<string, NatDevice>();
 
@@ -162,16 +162,15 @@ namespace Open.Nat
 					foreach (var device in devices)
 					{
 						var key = device.ToString();
-						NatDevice nat;
-						if (Devices.TryGetValue(key, out nat))
-						{
-							nat.Touch();
-						}
-						else
-						{
-							Devices.Add(key, device);
-						}
-					}
+                        if (Devices.TryGetValue(key, out NatDevice nat))
+                        {
+                            nat.Touch();
+                        }
+                        else
+                        {
+                            Devices.Add(key, device);
+                        }
+                    }
 					return devices;
 				});
 		}
@@ -200,8 +199,7 @@ namespace Open.Nat
 			foreach (var device in devices)
 			{
 				var key = device.ToString();
-				NatDevice nat;
-				if(Devices.TryGetValue(key, out nat))
+				if(Devices.TryGetValue(key, out var nat))
 				{
 					nat.Touch();
 				}

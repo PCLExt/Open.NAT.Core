@@ -32,7 +32,6 @@ using System.IO;
 using System.Linq;
 using System.Text;
 using System.Net;
-using System.Diagnostics;
 using System.Net.Sockets;
 using System.Threading;
 using System.Xml;
@@ -241,15 +240,13 @@ namespace Open.Nat
 
 				response = request.GetResponse();
 
-				var httpresponse = response as HttpWebResponse;
+                if (response is HttpWebResponse httpresponse && httpresponse.StatusCode != HttpStatusCode.OK)
+                {
+                    var message = string.Format("Couldn't get services list: {0} {1}", httpresponse.StatusCode, httpresponse.StatusDescription);
+                    throw new Exception(message);
+                }
 
-				if (httpresponse != null && httpresponse.StatusCode != HttpStatusCode.OK)
-				{
-					var message = string.Format("Couldn't get services list: {0} {1}", httpresponse.StatusCode, httpresponse.StatusDescription);
-					throw new Exception(message);
-				}
-
-				var xmldoc = ReadXmlResponse(response);
+                var xmldoc = ReadXmlResponse(response);
 
 				NatDiscoverer.TraceSource.LogInfo("{0}: Parsed services list", hostEndPoint);
 
@@ -277,19 +274,17 @@ namespace Open.Nat
 			{
 				// Just drop the connection, FIXME: Should i retry?
 				NatDiscoverer.TraceSource.LogError("{0}: Device denied the connection attempt: {1}", hostEndPoint, ex);
-				var inner = ex.InnerException as SocketException;
-				if (inner != null)
-				{
-					NatDiscoverer.TraceSource.LogError("{0}: ErrorCode:{1}", hostEndPoint, inner.ErrorCode);
-					NatDiscoverer.TraceSource.LogError("Go to http://msdn.microsoft.com/en-us/library/system.net.sockets.socketerror.aspx");
-					NatDiscoverer.TraceSource.LogError("Usually this happens. Try resetting the device and try again. If you are in a VPN, disconnect and try again.");
-				}
-				throw;
+                if (ex.InnerException is SocketException inner)
+                {
+                    NatDiscoverer.TraceSource.LogError("{0}: ErrorCode:{1}", hostEndPoint, inner.ErrorCode);
+                    NatDiscoverer.TraceSource.LogError("Go to http://msdn.microsoft.com/en-us/library/system.net.sockets.socketerror.aspx");
+                    NatDiscoverer.TraceSource.LogError("Usually this happens. Try resetting the device and try again. If you are in a VPN, disconnect and try again.");
+                }
+                throw;
 			}
 			finally
 			{
-				if (response != null)
-					response.Close();
+			    response?.Close();
 			}
 		}
 

@@ -183,10 +183,12 @@ namespace Open.Nat
 #if NET35
 		private Task RenewMapping(Mapping mapping)
 		{
-			var renewMapping = new Mapping(mapping);
-			renewMapping.Expiration = DateTime.UtcNow.AddSeconds(mapping.Lifetime);
+		    var renewMapping = new Mapping(mapping)
+		    {
+		        Expiration = DateTime.UtcNow.AddSeconds(mapping.Lifetime)
+		    };
 
-			NatDiscoverer.TraceSource.LogInfo("Renewing mapping {0}", renewMapping);
+		    NatDiscoverer.TraceSource.LogInfo("Renewing mapping {0}", renewMapping);
 			return CreatePortMapAsync(renewMapping)
 				.ContinueWith(task =>
 				{

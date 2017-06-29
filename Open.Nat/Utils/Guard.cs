@@ -16,8 +16,7 @@ namespace Open.Nat
 
 		internal static void IsTrue(bool exp, string paramName)
 		{
-			if (!exp)
-				throw new ArgumentOutOfRangeException(paramName);
+			if (!exp) throw new ArgumentOutOfRangeException(paramName);
 		}
 
 		internal static void IsNotNull(object obj, string paramName)

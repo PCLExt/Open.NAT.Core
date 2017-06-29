@@ -35,6 +35,6 @@ namespace Open.Nat
 			Device = device;
 		}
 
-		public NatDevice Device { get; private set; }
+		public NatDevice Device { get; }
 	}
 }

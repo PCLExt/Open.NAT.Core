@@ -52,9 +52,9 @@ namespace Open.Nat
 			ServiceControlUri = new Uri(builder.Uri, serviceControlUrl); ;
 		}
 
-		public IPEndPoint HostEndPoint { get; private set; }
-		public IPAddress LocalAddress { get; private set; }
-		public string ServiceType { get; private set; }
-		public Uri ServiceControlUri { get; private set; }
+		public IPEndPoint HostEndPoint { get; }
+		public IPAddress LocalAddress { get; }
+		public string ServiceType { get; }
+		public Uri ServiceControlUri { get; }
 	}
 }

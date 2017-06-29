@@ -125,8 +125,7 @@ namespace Open.Nat
 		{
 			_devices.Add(device);
 			var handler = DeviceFound;
-			if(handler!=null)
-				handler(this, new DeviceEventArgs(device));
+		    handler?.Invoke(this, new DeviceEventArgs(device));
 		}
 	}
 }

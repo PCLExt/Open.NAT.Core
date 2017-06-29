@@ -29,7 +29,6 @@
 //
 
 using System;
-using System.Collections;
 using System.Collections.Generic;
 using System.Net;
 using System.Threading.Tasks;
@@ -212,9 +211,8 @@ namespace Open.Nat
 					}
 					else
 					{
-						MappingException e = task.Exception.InnerException as MappingException;
-						if (e != null && e.ErrorCode != UpnpConstants.NoSuchEntryInArray) throw e;
-					}
+                        if (task.Exception.InnerException is MappingException e && e.ErrorCode != UpnpConstants.NoSuchEntryInArray) throw e;
+                    }
 				});
 		}
 #else
@@ -258,23 +256,22 @@ namespace Open.Nat
 						var responseMessage = new GetPortMappingEntryResponseMessage(responseData,
 							DeviceInfo.ServiceType, true);
 
-						IPAddress internalClientIp;
-						if (!IPAddress.TryParse(responseMessage.InternalClient, out internalClientIp))
-						{
-							NatDiscoverer.TraceSource.LogWarn("InternalClient is not an IP address. Mapping ignored!");
-						}
-						else
-						{
-							var mapping = new Mapping(responseMessage.Protocol
-								, internalClientIp
-								, responseMessage.InternalPort
-								, responseMessage.ExternalPort
-								, responseMessage.LeaseDuration
-								, responseMessage.PortMappingDescription);
-							mappings.Add(mapping);
-						}
+                        if (!IPAddress.TryParse(responseMessage.InternalClient, out IPAddress internalClientIp))
+                        {
+                            NatDiscoverer.TraceSource.LogWarn("InternalClient is not an IP address. Mapping ignored!");
+                        }
+                        else
+                        {
+                            var mapping = new Mapping(responseMessage.Protocol
+                                , internalClientIp
+                                , responseMessage.InternalPort
+                                , responseMessage.ExternalPort
+                                , responseMessage.LeaseDuration
+                                , responseMessage.PortMappingDescription);
+                            mappings.Add(mapping);
+                        }
 
-						GetGenericMappingAsync(index + 1, mappings, taskCompletionSource);
+                        GetGenericMappingAsync(index + 1, mappings, taskCompletionSource);
 					}
 					else
 					{
@@ -334,8 +331,7 @@ namespace Open.Nat
 
 					var responseMessage = new GetPortMappingEntryResponseMessage(responseData, DeviceInfo.ServiceType, true);
 
-					IPAddress internalClientIp;
-					if(!IPAddress.TryParse(responseMessage.InternalClient, out internalClientIp))
+					if(!IPAddress.TryParse(responseMessage.InternalClient, out var internalClientIp))
 					{
 						NatDiscoverer.TraceSource.LogWarn("InternalClient is not an IP address. Mapping ignored!");
 						continue;

@@ -15,11 +15,13 @@ namespace Open.Nat.Tests
 		[TestInitialize]
 		public void Setup()
 		{
-			_cfg = new ServerConfiguration();
-			_cfg.Prefix = "http://*:5431/";
-			_cfg.ServiceUrl = "http://[::1]:5431/dyndev/uuid:0000e068-20a0-00e0-20a0-48a8000808e0";
-			_cfg.ControlUrl = "http://[::1]:5431/uuid:0000e068-20a0-00e0-20a0-48a802086048/WANIPConnection:1";
-			_server = new UpnpMockServer(_cfg);
+		    _cfg = new ServerConfiguration
+		    {
+		        Prefix = "http://*:5431/",
+		        ServiceUrl = "http://[::1]:5431/dyndev/uuid:0000e068-20a0-00e0-20a0-48a8000808e0",
+		        ControlUrl = "http://[::1]:5431/uuid:0000e068-20a0-00e0-20a0-48a802086048/WANIPConnection:1"
+		    };
+		    _server = new UpnpMockServer(_cfg);
 			_server.Start();
 		}
 

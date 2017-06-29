@@ -40,6 +40,6 @@ namespace Open.Nat
 			ExternalIPAddress = IPAddress.Parse(ip);
 		}
 
-		public IPAddress ExternalIPAddress { get; private set; }
+		public IPAddress ExternalIPAddress { get; }
 	}
 }

@@ -31,7 +31,8 @@ namespace Open.Nat
 		public const int InvalidArguments = 402;
 		public const int ActionFailed = 501;
 		public const int Unathorized = 606;
-		public const int SpecifiedArrayIndexInvalid = 713;		public const int NoSuchEntryInArray = 714;
+		public const int SpecifiedArrayIndexInvalid = 713;
+		public const int NoSuchEntryInArray = 714;
 		public const int WildCardNotPermittedInSourceIp = 715;
 		public const int WildCardNotPermittedInExternalPort = 716;
 		public const int ConflictInMappingEntry = 718;

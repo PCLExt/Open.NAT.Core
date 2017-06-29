@@ -33,7 +33,7 @@ using System.Net;
 
 namespace Open.Nat
 {
-	enum MappingLifetime
+    internal enum MappingLifetime
 	{
 		Permanent,
 		Session,
@@ -102,7 +102,7 @@ namespace Open.Nat
 					case int.MaxValue:
 						LifetimeType = MappingLifetime.Session;
 						_lifetime = 10 * 60; // ten minutes
-						_expiration = DateTime.UtcNow.AddSeconds(_lifetime);;
+						_expiration = DateTime.UtcNow.AddSeconds(_lifetime);
 						break;
 					case 0:
 						LifetimeType = MappingLifetime.Permanent;
@@ -249,7 +249,7 @@ namespace Open.Nat
 			unchecked
 			{
 				var hashCode = PublicPort;
-				hashCode = (hashCode * 397) ^ (PrivateIP != null ? PrivateIP.GetHashCode() : 0);
+				hashCode = (hashCode * 397) ^ (PrivateIP?.GetHashCode() ?? 0);
 				hashCode = (hashCode * 397) ^ PrivatePort;
 				return hashCode;
 			}

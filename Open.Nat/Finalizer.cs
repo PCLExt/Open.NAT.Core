@@ -25,7 +25,7 @@
 //
 namespace Open.Nat
 {
-	sealed class Finalizer 
+    internal sealed class Finalizer 
 	{
 		~Finalizer() 
 		{

@@ -222,15 +222,9 @@ namespace Open.Nat
 			return tcs.Task;
 		}
 
-		public static Task<Task> WhenAny(params Task[] tasks)
-		{
-			return Task.Factory.ContinueWhenAny(tasks, t => t);
-		}
+		public static Task<Task> WhenAny(params Task[] tasks) => Task.Factory.ContinueWhenAny(tasks, t => t);
 
-		public static Task WhenAll(params Task[] tasks)
-		{
-			return Task.Factory.ContinueWhenAll(tasks, t => t);
-		}
+	    public static Task WhenAll(params Task[] tasks) => Task.Factory.ContinueWhenAll(tasks, t => t);
 	}
 #endif //NET35
 }
